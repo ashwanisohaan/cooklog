@@ -7,7 +7,7 @@ class Calculator extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'My Simple calc',
+            'My Simple calc modifed from sukhwant',
             style: TextStyle(
               color: Colors.amber,
               fontSize: 24,
@@ -83,6 +83,5 @@ class Calculator extends StatelessWidget {
                 ]),
           ),
         ));
-    ;
   }
 }
