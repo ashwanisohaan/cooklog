@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_first_flutter_app/components/UIElement/ElevatedButton.dart';
+import 'package:my_first_flutter_app/components/ui_elements/app_buttons.dart';
 
 class Calculator extends StatelessWidget {
   @override
