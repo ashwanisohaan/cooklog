@@ -7,7 +7,7 @@ class Calculator extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            ' My Calculator',
+            'My Simple calc',
             style: TextStyle(
               color: Colors.amber,
               fontSize: 24,
