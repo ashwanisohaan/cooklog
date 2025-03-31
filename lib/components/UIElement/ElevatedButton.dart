@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:my_first_flutter_app/components/UIElement/OnPressed.dart';
 
 class Buttons extends StatelessWidget {
   void _Buttons() {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_flutter_app/components/screens/calculator.dart';
-import 'package:my_first_flutter_app/components/screens/login_screen.dart';
 
 void main() {
   runApp(MyApp());
