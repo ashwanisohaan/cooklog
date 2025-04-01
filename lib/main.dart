@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_first_flutter_app/components/screens/calculator.dart';
+import 'package:my_first_flutter_app/screens/calculator.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
