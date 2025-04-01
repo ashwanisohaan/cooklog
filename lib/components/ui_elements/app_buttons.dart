@@ -1,34 +1,19 @@
 import 'package:flutter/material.dart';
 
 class Buttons extends StatelessWidget {
-  void _Buttons() {
-    print('Button pressed from parent!');
-  }
-
   final String txt;
-  final double size;
-  //final String onpressed;
-  //final Colors btnclr;
+  final VoidCallback onTap;
 
-  Buttons(
-    this.txt,
-    this.size,
-  );
+  Buttons(this.txt, this.onTap);
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-        child: Text(
-          txt,
-          style: TextStyle(fontSize: size),
-        ),
+        child: Text(txt, style: TextStyle(fontSize: 20, height: 2)),
         style: OutlinedButton.styleFrom(
-            foregroundColor: Colors.red,
-            shape: CircleBorder(),
-            iconColor: Colors.white,
-            minimumSize: Size(5, 4)),
-        onPressed: () {
-          print('Button pressed');
-        });
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.zero))),
+        onPressed: onTap);
   }
 }
