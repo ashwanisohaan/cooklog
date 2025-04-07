@@ -8,4 +8,8 @@ extension CapitalStrng on String {
 
     return rd.toString();
   }
+
+  String toManiRmv() {
+    return this[0].toString() + this.substring(length - 1);
+  }
 }

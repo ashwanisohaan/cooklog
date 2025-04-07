@@ -1,3 +1,5 @@
+//import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_first_flutter_app/components/extensions.dart';
@@ -37,7 +39,10 @@ class _CalculatorState extends State<Calculator> {
           vl == '7' ||
           vl == '8' ||
           vl == '9' ||
-          vl == '0') {
+          vl == '0' ||
+          vl == '00' ||
+          vl == '.' ||
+          vl == '()') {
         _textController1.toConCatMani(vl);
       } else if (vl == "AC" || vl == "=") {
         if (vl == "=" && isOpsApplied) {
@@ -47,9 +52,27 @@ class _CalculatorState extends State<Calculator> {
           } else if (ops == "*") {
             int rs = int.parse(firstCache) * int.parse(_textController1.text);
             result = "Result of $ops is $rs";
+          } else if (ops == "-") {
+            int rs = int.parse(firstCache) - int.parse(_textController1.text);
+            result = "Result of $ops is $rs";
+          } else if (ops == "/") {
+            double rs =
+                double.parse(firstCache) / double.parse(_textController1.text);
+            result = "Result of $ops is $rs";
           }
         }
 
+        isOpsApplied = false;
+        ops = "Operation Applied";
+        _textController1.text = "";
+        firstCache = "";
+      } else if (vl == 'C') {
+        if (vl == 'C' && isOpsApplied) {
+          if (ops == 'C') {
+            String rs = vl;
+            // result = 'res $rs';
+          }
+        }
         isOpsApplied = false;
         ops = "Operation Applied";
         _textController1.text = "";
@@ -78,7 +101,7 @@ class _CalculatorState extends State<Calculator> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 //crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 16,
+                spacing: 8,
                 children: [
                   Text(result,
                       style: GoogleFonts.nerkoOne(
