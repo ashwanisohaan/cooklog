@@ -24,7 +24,16 @@ class _CalculatorState extends State<Calculator> {
         ops = vl;
         firstCache = _textController1.text;
         _textController1.text = "";
-      } else if (vl == '1' || vl == '2' || vl == '3' || vl == '4') {
+      } else if (vl == '1' ||
+          vl == '2' ||
+          vl == '3' ||
+          vl == '4' ||
+          vl == '5' ||
+          vl == '6' ||
+          vl == '7' ||
+          vl == '8' ||
+          vl == '9' ||
+          vl == '0') {
         _textController1.text = vl;
       } else if (vl == "AC" || vl == "=") {
         if (vl == "=" && isOpsApplied) {
