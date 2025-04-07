@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:my_first_flutter_app/components/extensions.dart';
 import 'package:my_first_flutter_app/components/ui_elements/app_buttons.dart';
 import 'package:my_first_flutter_app/components/ui_elements/app_textfields.dart';
+import 'package:my_first_flutter_app/components/utility.dart';
+import 'package:uuid/uuid.dart';
 
 class Calculator extends StatefulWidget {
   @override
@@ -11,7 +15,7 @@ class Calculator extends StatefulWidget {
 
 class _CalculatorState extends State<Calculator> {
   String ops = "Operation Applied";
-  String result = "Result will be here";
+  String result = "res";
   String firstCache = "";
   bool isOpsApplied = false;
   final TextEditingController _textController1 = TextEditingController();
@@ -34,7 +38,7 @@ class _CalculatorState extends State<Calculator> {
           vl == '8' ||
           vl == '9' ||
           vl == '0') {
-        _textController1.text = vl;
+        _textController1.toConCatMani(vl);
       } else if (vl == "AC" || vl == "=") {
         if (vl == "=" && isOpsApplied) {
           if (ops == "+") {
@@ -77,7 +81,12 @@ class _CalculatorState extends State<Calculator> {
                 spacing: 16,
                 children: [
                   Text(result,
-                      style: TextStyle(color: Colors.white, fontSize: 24)),
+                      style: GoogleFonts.nerkoOne(
+                          textStyle: Theme.of(context).textTheme.titleLarge,
+                          color: Colors.white30,
+                          fontWeight: FontWeight.w800,
+                          fontStyle: FontStyle.italic,
+                          fontSize: 48)),
                   AppTextField("Enter value", _textController1),
                   Text(ops,
                       style: TextStyle(color: Colors.orange, fontSize: 24)),

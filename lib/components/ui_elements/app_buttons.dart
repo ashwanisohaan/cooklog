@@ -9,7 +9,8 @@ class Buttons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-        child: Text(txt, style: TextStyle(fontSize: 20, height: 2)),
+        child: Text(txt,
+            style: TextStyle(fontSize: 20, height: 2, fontFamily: "Pooper")),
         style: OutlinedButton.styleFrom(
             foregroundColor: Colors.white,
             shape: RoundedRectangleBorder(
