@@ -67,13 +67,12 @@ class _CalculatorState extends State<Calculator> {
         _textController1.text = "";
         firstCache = "";
       } else if (vl == 'C') {
-        if (vl == 'C' && isOpsApplied) {
-          if (ops == 'C') {
-            String rs = vl;
-            // result = 'res $rs';
-          }
+        if (_textController1.text.isNotEmpty) {
+          _textController1.text = _textController1.text
+              .substring(0, _textController1.text.length - 1);
+              
         }
-        isOpsApplied = false;
+        isOpsApplied = true;
         ops = "Operation Applied";
         _textController1.text = "";
         firstCache = "";
@@ -186,6 +185,7 @@ class _CalculatorState extends State<Calculator> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Buttons('.', () {
                         onButtonPress(".");
@@ -199,6 +199,10 @@ class _CalculatorState extends State<Calculator> {
                       Buttons('AC', () {
                         onButtonPress("AC");
                       }),
+                      // Icon(
+                      //   Icons.backspace,
+                      //   size: 50,
+                      // ),
                     ],
                   ),
                   SizedBox(height: 20)
