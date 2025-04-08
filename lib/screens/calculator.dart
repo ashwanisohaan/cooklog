@@ -15,9 +15,24 @@ class _CalculatorState extends State<Calculator> {
   String firstCache = "";
   bool isOpsApplied = false;
   final TextEditingController _textController1 = TextEditingController();
-
-  void onButtonPress(String vl) {
+  
+  
+  /*void _hsndlePress(){
     setState(() {
+      _counter++;
+    });
+    if(_counter==3){
+      print('btn 3 pressed');
+
+    }
+  }*/
+
+  void onButtonPress(String vl,) {
+
+    setState(() {
+      
+      
+      
       if (_textController1.text.isNotEmpty &&
           (vl == "+" || vl == "*" || vl == "/" || vl == "-")) {
         isOpsApplied = true;
@@ -63,9 +78,9 @@ class _CalculatorState extends State<Calculator> {
           padding: EdgeInsets.all(16),
           child: Center(
             child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.start,
                 //crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 16,
+                spacing: 8,
                 children: [
                   Text(result,
                       style: TextStyle(color: Colors.white, fontSize: 24)),

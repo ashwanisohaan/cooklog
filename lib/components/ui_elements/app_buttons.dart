@@ -3,8 +3,17 @@ import 'package:flutter/material.dart';
 class Buttons extends StatelessWidget {
   final String txt;
   final VoidCallback onTap;
+  int count=0;
 
   Buttons(this.txt, this.onTap);
+  /*void _handlPress(){
+    setState(){
+      count++;
+    }
+    if(count==3){
+      print('btn 3');
+    }
+  }*/
 
   @override
   Widget build(BuildContext context) {
