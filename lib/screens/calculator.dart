@@ -1,3 +1,5 @@
+//import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_first_flutter_app/components/ui_elements/app_buttons.dart';
@@ -30,7 +32,15 @@ class _CalculatorState extends State<Calculator> {
           vl == '2' ||
           vl == '3' ||
           vl == '4' ||
-          vl == '5') {
+          vl == '5' ||
+          vl == '6' ||
+          vl == '7' ||
+          vl == '8' ||
+          vl == '9' ||
+          vl == '0' ||
+          vl == '00' ||
+          vl == '.' ||
+          vl == '()') {
         _textController1.toConCatMani(vl);
       } else if (vl == "AC" || vl == "=") {
         if (vl == "=" && isOpsApplied) {
@@ -40,10 +50,27 @@ class _CalculatorState extends State<Calculator> {
           } else if (ops == "*") {
             int rs = int.parse(firstCache) * int.parse(_textController1.text);
             result = "Result of $ops is $rs";
+          } else if (ops == "-") {
+            int rs = int.parse(firstCache) - int.parse(_textController1.text);
+            result = "Result of $ops is $rs";
+          } else if (ops == "/") {
+            double rs =
+                double.parse(firstCache) / double.parse(_textController1.text);
+            result = "Result of $ops is $rs";
           }
         }
 
         isOpsApplied = false;
+        ops = "Operation Applied";
+        _textController1.text = "";
+        firstCache = "";
+      } else if (vl == 'C') {
+        if (_textController1.text.isNotEmpty) {
+          _textController1.text = _textController1.text
+              .substring(0, _textController1.text.length - 1);
+              
+        }
+        isOpsApplied = true;
         ops = "Operation Applied";
         _textController1.text = "";
         firstCache = "";
@@ -71,7 +98,7 @@ class _CalculatorState extends State<Calculator> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 //crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 16,
+                spacing: 8,
                 children: [
                   Text(result,
                       style: GoogleFonts.nerkoOne(
@@ -156,6 +183,7 @@ class _CalculatorState extends State<Calculator> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Buttons('.', () {
                         onButtonPress(".");
@@ -169,6 +197,10 @@ class _CalculatorState extends State<Calculator> {
                       Buttons('AC', () {
                         onButtonPress("AC");
                       }),
+                      // Icon(
+                      //   Icons.backspace,
+                      //   size: 50,
+                      // ),
                     ],
                   ),
                   SizedBox(height: 20)
