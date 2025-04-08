@@ -2,11 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_first_flutter_app/components/extensions.dart';
 import 'package:my_first_flutter_app/components/ui_elements/app_buttons.dart';
 import 'package:my_first_flutter_app/components/ui_elements/app_textfields.dart';
 import 'package:my_first_flutter_app/components/utility.dart';
-import 'package:uuid/uuid.dart';
 
 class Calculator extends StatefulWidget {
   @override
