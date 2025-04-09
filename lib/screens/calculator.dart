@@ -1,6 +1,11 @@
+//import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_first_flutter_app/components/ui_elements/app_buttons.dart';
 import 'package:my_first_flutter_app/components/ui_elements/app_textfields.dart';
+import 'package:my_first_flutter_app/components/utility.dart';
+import 'package:uuid/uuid.dart';
 
 class Calculator extends StatefulWidget {
   @override
@@ -10,56 +15,95 @@ class Calculator extends StatefulWidget {
 }
 
 class _CalculatorState extends State<Calculator> {
-  String ops = "Operation Applied";
-  String result = "Result will be here";
-  String firstCache = "";
-  bool isOpsApplied = false;
-  final TextEditingController _textController1 = TextEditingController();
+ var num1 ;
+ var num2;
+ String history ='';
+ String textToDisplay ='';
+  String ops = "";
+  String result = "";
+  // String firstCache = "";
+   //bool isOpsApplied = false;
+  // final TextEditingController _textController1 = TextEditingController();
   
   
-  /*void _hsndlePress(){
-    setState(() {
-      _counter++;
-    });
-    if(_counter==3){
-      print('btn 3 pressed');
+  
 
-    }
-  }*/
-
-  void onButtonPress(String vl,) {
-
-    setState(() {
-      
-      
-      
-      if (_textController1.text.isNotEmpty &&
-          (vl == "+" || vl == "*" || vl == "/" || vl == "-")) {
-        isOpsApplied = true;
-        ops = vl;
-        firstCache = _textController1.text;
-        _textController1.text = "";
-      } else if (vl == '1' || vl == '2' || vl == '3' || vl == '4') {
-        _textController1.text = vl;
-      } else if (vl == "AC" || vl == "=") {
-        if (vl == "=" && isOpsApplied) {
-          if (ops == "+") {
-            int rs = int.parse(firstCache) + int.parse(_textController1.text);
-            result = "Result of $ops is $rs";
-          } else if (ops == "*") {
-            int rs = int.parse(firstCache) * int.parse(_textController1.text);
-            result = "Result of $ops is $rs";
-          }
-        }
-
-        isOpsApplied = false;
-        ops = "Operation Applied";
-        _textController1.text = "";
-        firstCache = "";
-      }
-    });
-
+  void onButtonPress(String vl) {
     print(vl);
+  // if(_textController1.text.isNotEmpty){
+//textToDisplay=_textController1.text;
+//_textController1.text="";
+   
+ if(vl=='C'){
+  textToDisplay="";
+  
+  num1=0;
+  num2=0;
+  result='';
+}
+else if(vl=='AC'){
+  textToDisplay="";
+  num1=0;
+  num2=0;
+  result='';
+  history='';
+}
+else if(vl=='<'){
+  result=textToDisplay.substring(0,textToDisplay.length-1);
+}
+else if(vl=="+/-"){
+  if(textToDisplay[0]!='-'){
+    result='-'+textToDisplay;
+  }else{
+    result=textToDisplay.substring(1);
+  }
+}
+else if(vl == "+" || vl == "*" || vl == "/" || vl == "-")
+{
+  try{
+  num1=int.parse(textToDisplay);
+  result='';
+  ops=vl;
+  } on FormatException catch(e){print(e.message);}
+}
+else if(vl=='.'){
+  
+  textToDisplay=vl;
+  result='';
+  history='';
+  ops=vl;
+}
+else if(vl=="=")
+{
+  num2=int.parse(textToDisplay);
+  if(ops=='+')
+  {
+    result=(num1+num2).toString();
+    history=num1.toString()+ops.toString()+num2.toString();
+  }
+    if(ops=='-')
+  {
+    result=(num1-num2).toString();
+    history=num1.toString()+ops.toString()+num2.toString();
+  }
+   if(ops=='*')
+  {
+    result=(num1*num2).toString();
+    history=num1.toString()+ops.toString()+num2.toString();
+  }
+   if(ops=='/')
+  {
+    result=(num1/num2).toString();
+    history=num1.toString()+ops.toString()+num2.toString();
+  }}
+  else {
+    result=int.parse(textToDisplay+vl).toString();
+  }
+
+    setState(() {
+     textToDisplay =result;
+       
+    });
   }
 
   @override
@@ -78,40 +122,42 @@ class _CalculatorState extends State<Calculator> {
           padding: EdgeInsets.all(16),
           child: Center(
             child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
                 //crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 8,
+                spacing: 5,
                 children: [
-                  Text(result,
-                      style: TextStyle(color: Colors.white, fontSize: 24)),
-                  AppTextField("Enter value", _textController1),
-                  Text(ops,
-                      style: TextStyle(color: Colors.orange, fontSize: 24)),
-                  Text(firstCache,
-                      style: TextStyle(color: Colors.white, fontSize: 24)),
-                  SizedBox(height: 20),
+                  Container(child: Text(history,
+                  style: GoogleFonts.rubik(textStyle: TextStyle(fontSize: 48,
+                  color:Colors.white)),)),
+                    Container(child: Text(textToDisplay,
+                  style: GoogleFonts.rubik(textStyle: TextStyle(fontSize: 48,
+                  color:Colors.white)),)),
+
+                  
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Buttons('C', () {
+                     // Buttons('1', callback:onButtonPress),
+                      Buttons("C", (){
                         onButtonPress("C");
                       }),
-                      Buttons('()', () {
-                        onButtonPress("()");
+                      Buttons("<", (){
+                        onButtonPress("<");
                       }),
-                      Buttons('-', () {
+                      Buttons("-", (){
                         onButtonPress("-");
                       }),
-                      Buttons('/', () {
+                      Buttons("/", (){
                         onButtonPress("/");
                       })
+                     
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Buttons('1', () {
-                        onButtonPress("1");
+                      Buttons('1', (){
+                        onButtonPress('1');
                       }),
                       Buttons('2', () {
                         onButtonPress("2");
@@ -160,6 +206,7 @@ class _CalculatorState extends State<Calculator> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Buttons('.', () {
                         onButtonPress(".");
@@ -173,6 +220,7 @@ class _CalculatorState extends State<Calculator> {
                       Buttons('AC', () {
                         onButtonPress("AC");
                       }),
+                      
                     ],
                   ),
                   SizedBox(height: 20)
